@@ -14,11 +14,14 @@
     </bean>
     <bean id = "musucPlayer"
           class = "com.dchalbyshev.spring.MuiscPlayer">
-        <constructor-arg ref="musicBean"/>
+        <property name="music" ref="musicBean"/>
+        <!--spring автоматически убирает set и ищет метод music
+        без set и ignoreRegister)-->
+        <!--<constructor-arg ref="musicBean"/>-->
         <!--в аргумент контруктора передаем ссылку на
         созданный бин-->
-
-
+        <property name="name" value="Some name"/>
+        <property name="volume" value="33"/>
     </bean>
 
 </beans>
