@@ -8,9 +8,17 @@
         http://www.springframework.org/schema/context
         http://www.springframework.org/schema/context/spring-context.xsd">
 
-    <bean id="testBean"
-          class="com.dchalbyshev.spring.TestBean">
-        <constructor-arg value="Neil"/>
+    <bean id="musicBean"
+          class="com.dchalbyshev.spring.RockMusic">
+
+    </bean>
+    <bean id = "musucPlayer"
+          class = "com.dchalbyshev.spring.MuiscPlayer">
+        <constructor-arg ref="musicBean"/>
+        <!--в аргумент контруктора передаем ссылку на
+        созданный бин-->
+
+
     </bean>
 
 </beans>
