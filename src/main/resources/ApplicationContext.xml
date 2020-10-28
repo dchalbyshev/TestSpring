@@ -7,7 +7,7 @@
         http://www.springframework.org/schema/beans/spring-beans.xsd
         http://www.springframework.org/schema/context
         http://www.springframework.org/schema/context/spring-context.xsd">
-
+<context:property-placeholder location="classpath:musicPlayer.properties"/>
     <bean id="musicBean"
           class="com.dchalbyshev.spring.RockMusic">
 
@@ -20,8 +20,13 @@
         <!--<constructor-arg ref="musicBean"/>-->
         <!--в аргумент контруктора передаем ссылку на
         созданный бин-->
+        <!-- прописываем значения в бине
         <property name="name" value="Some name"/>
-        <property name="volume" value="33"/>
+        <property name="volume" value="33"/>   -->
+
+    <!-- устанавливаем значения переменных бина из созданного файла properties-->
+        <property name="name" value="${musicPlayer.name}"/>
+        <property name="volume" value="${musicPlayer.volume}"/>
     </bean>
 
 </beans>
