@@ -1,8 +1,12 @@
 package com.dchalbyshev.spring;
 
 
+import java.util.ArrayList;
+import java.util.List;
 
 public class MuiscPlayer {
+
+    private List<Music> list = new ArrayList<>();
    private Music music;
    private String name;
    private  String volume;
@@ -26,11 +30,18 @@ public class MuiscPlayer {
     public MuiscPlayer() {
     }
 
-    public MuiscPlayer(Music music) {
-        this.music = music;
+    public void setList(List<Music> list) {
+        this.list = list;
+    }
+
+    public MuiscPlayer(List<Music> list) {
+        this.list = list;
     }  // IOC внедряем зависимость
     public  void playMusic(){
-        System.out.println("Playing" +  music.getSong());
+        for (Music music: list){
+            System.out.println( music.getSong());
+
+        }
     }
 
     public void setMusic(Music music) {
