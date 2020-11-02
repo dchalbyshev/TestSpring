@@ -1,21 +1,27 @@
 package com.dchalbyshev.spring;
 
 
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Component;
+
 import java.util.ArrayList;
 import java.util.List;
 
+@Component
 public class MuiscPlayer {
 
     private List<Music> list = new ArrayList<>();
    private Music music;
+   @Value("${musicPlayer.name}") // берем значение из properties
    private String name;
-   private  String volume;
+   @Value("${musicPlayer.volume}")
+   private  int  volume;
 
     public void setName(String name) {
         this.name = name;
     }
 
-    public void setVolume(String volume) {
+    public void setVolume(Integer volume) {
         this.volume = volume;
     }
 
@@ -23,7 +29,7 @@ public class MuiscPlayer {
         return name;
     }
 
-    public String getVolume() {
+    public Integer getVolume() {
         return volume;
     }
 

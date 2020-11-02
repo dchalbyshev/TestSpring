@@ -7,14 +7,23 @@
         http://www.springframework.org/schema/beans/spring-beans.xsd
         http://www.springframework.org/schema/context
         http://www.springframework.org/schema/context/spring-context.xsd">
-<context:property-placeholder location="classpath:musicPlayer.properties"/>
-    <bean id="musicRockBean"
-          class="com.dchalbyshev.spring.RockMusic">
 
+    <context:component-scan base-package="com.dchalbyshev"/>
+    <!-- не забыть указать тчобы сканировал в указанном пакете-->
+    <context:property-placeholder location="classpath:musicPlayer.properties"/>
+    <!--указываем местопололжение файла с нашими свойствами -->
+    <bean id="musicRockBean"
+          class="com.dchalbyshev.spring.RockMusic"
+    init-method="doMyInit"
+    destroy-method="doDestroy">
     </bean>
 
+
     <bean id="musicClassicBean"
-          class="com.dchalbyshev.spring.ClassicalMusic">
+          class="com.dchalbyshev.spring.ClassicalMusic"
+        init-method="doMyInit"
+        destroy-method="doDestroy"
+    factory-method="getClassicalMusic">
 
     </bean>
 
@@ -26,9 +35,12 @@
 
 
 
-    <bean id = "musucPlayer"
-          class = "com.dchalbyshev.spring.MuiscPlayer">
-        <property name="list" >
+   <bean id = "musucPlayer"
+          class = "com.dchalbyshev.spring.MuiscPlayer"
+           scope="prototype" >
+        <!--scope="prototype" - создаем каждый раз новый объект
+        при вызове  getBean("   ", Object.class)-->
+         <property name="list" >
             <list>
                 <ref bean="musicClassicBean"/>
                 <ref bean="musicRockBean"/>
@@ -52,6 +64,8 @@
     <!-- устанавливаем значения переменных бина из созданного файла properties-->
         <property name="name" value="${musicPlayer.name}"/>
         <property name="volume" value="${musicPlayer.volume}"/>
+
+
     </bean>
 
 </beans>
